@@ -8,10 +8,10 @@ workflows:
     scripts:
       # Installa Expo CLI globalmente
       - npm install -g expo-cli
-      # Installa le dipendenze del progetto, risolvendo i conflitti
+      # Forza l'installazione delle dipendenze con --legacy-peer-deps
       - npm install --legacy-peer-deps
-      - expo install react-native
+      # Installa le dipendenze richieste da Expo
       - expo install
-      - yarn install  # Usa questo solo se preferisci yarn
+      - yarn install # Usa yarn se preferisci
       # Esegui la build per Android
       - expo build:android --no-publish
