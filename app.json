@@ -3,6 +3,7 @@
     "name": "previsioni-crypto-custom",
     "slug": "snack-953710b6-4169-48ae-8425-1bff2166c8b4",
     "version": "1.0.0",
+    "sdkVersion": "52.0.0";
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,10 +20,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.patrikkone.snack953710b6416948ae84251bff2166c8b4"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e57ab937-547e-4f79-aa7b-7bf1966433fe"
+      }
     }
   }
 }
