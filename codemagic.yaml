@@ -4,10 +4,17 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il token Expo, assicurati di aggiornarlo se necessario
+        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz" # Il token Expo
+      node: latest # Specifica la versione di Node.js
     scripts:
-      - npm install -g expo-cli
-      - npm install --legacy-peer-deps
-      - expo install
-      - yarn install
-      - expo build:android --no-publish
+      - npm install -g expo-cli # Installa Expo CLI globalmente
+      - npm install --legacy-peer-deps # Risolvi i conflitti delle dipendenze
+      - expo install # Installa le dipendenze richieste da Expo
+      - yarn install # Installa eventuali altre dipendenze (opzionale)
+      - expo build:android --no-publish # Esegui la build per Android
+    artifacts:
+      - build/ # Specifica dove trovare i file di output, ad esempio per APK o AAB
+    cache:
+      paths:
+        - node_modules # Cache per accelerare build successive
+        - .expo # Cache dei file di Expo
