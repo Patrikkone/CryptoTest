@@ -4,14 +4,9 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: "<your_expo_token>"
+        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
     scripts:
-      # Install necessary dependencies before building the app
       - npm install
       - expo install react-native
       - expo install
-      - yarn install  # If you're using yarn instead of npm
       - expo build:android --no-publish
-    android:
-      build:
-        workflow: managed
