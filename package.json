@@ -14,7 +14,7 @@
     "react-native": "0.76.6",
     "axios": "*",
     "expo-gl": "~15.0.4",
-    "expo-camera": "~16.0.13",
+    "expo-camera": "^13.4.4",
     "moment-timezone": "*",
     "react-native-fs": "2.20.0",
     "@tensorflow/tfjs": "*",
