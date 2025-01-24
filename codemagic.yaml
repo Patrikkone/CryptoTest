@@ -6,7 +6,7 @@ workflows:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
         EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita il controllo Directory
-      node: "16"  # Usa Node.js 16 per compatibilità con expo-camera
+      node: "18"  # Usa Node.js 16 per compatibilità con expo-camera
     scripts:
       - echo "== Verifica versione di Node.js =="
       - node -v  # Verifica la versione di Node.js
