@@ -6,17 +6,8 @@ workflows:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il token Expo, assicurati di aggiornarlo se necessario
     scripts:
-      # Installa Expo CLI globalmente
       - npm install -g expo-cli
-
-      # Installa tutte le dipendenze con --legacy-peer-deps per evitare conflitti di versione
       - npm install --legacy-peer-deps
-
-      # Installa le dipendenze necessarie per Expo
       - expo install
-
-      # Usa Yarn se preferisci rispetto a NPM
       - yarn install
-
-      # Esegui la build per Android senza pubblicare
       - expo build:android --no-publish
