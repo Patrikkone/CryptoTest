@@ -4,11 +4,19 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: <-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz>
+        EXPO_TOKEN: "<-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz>"
     scripts:
       - npm install -g expo-cli
       - yarn install
       - expo publish
-    android:
-      build:
-        workflow: managed
+
+  android:
+    name: Build Android app
+    max_build_duration: 60
+    environment:
+      vars:
+        EXPO_TOKEN: "<-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz>"
+    scripts:
+      - npm install -g expo-cli
+      - yarn install
+      - expo build:android --no-publish  # Questo comando costruisce l'app per Android
