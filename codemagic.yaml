@@ -4,28 +4,30 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il token Expo
-      node: "16.14"  # Specifica la versione di Node.js
+        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il tuo token Expo
+        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita temporaneamente il controllo Directory
+      node: "18"  # Usa Node.js 18 per supportare `fetch` nativamente
     scripts:
-      - npm install -g expo-cli  # Installa Expo CLI globalmente
-      - npm install -g eas-cli  # Installa EAS CLI per la build
-      - npm install --legacy-peer-deps  # Risolvi i conflitti delle dipendenze
-      - npm install  # Installa tutte le dipendenze, inclusa react-native
-      - expo install  # Installa le dipendenze di Expo
-      - yarn install || true  # Usa yarn solo se necessario (altrimenti ignora errori)
-      
-      # Correggi le dipendenze con npx expo-doctor
-      - npx expo-doctor  # Usa npx per diagnosticare e risolvere le dipendenze incompatibili
-      
-      # Verifica le versioni di Expo e React Native
+      # Installa gli strumenti necessari
+      - npm install -g expo-cli eas-cli  # Installa Expo CLI e EAS CLI globalmente
+      - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze
+      - npm install  # Installa le dipendenze
+
+      # Sincronizza e risolvi le dipendenze con Expo
+      - npx expo install --check  # Controlla e aggiorna automaticamente le dipendenze
+      - expo install expo-camera  # Specifica una versione compatibile con il tuo SDK
+      - expo install  # Installa eventuali altre dipendenze richieste
+
+      # Verifica la configurazione
+      - echo "Verificando configurazione del progetto..."
       - expo --version  # Verifica la versione di Expo CLI
       - npx react-native --version  # Verifica la versione di React Native
 
-      # Pulisci la cache di Expo (facoltativo)
-      - expo start -c  # Pulisce la cache di Expo
+      # Pulisci la cache (opzionale)
+      - expo start -c  # Pulisci la cache di Expo
 
-      # Esegui la build con EAS per Android senza pubblicarla
-      - eas build --platform android --no-publish  # Usa EAS per la build Android
+      # Avvia la build Android senza pubblicarla
+      - eas build --platform android --no-publish  # Usa EAS per creare la build Android
 
     artifacts:
-      - build/  # Specifica dove trovare i file di output, ad esempio per APK o AAB
+      - build/  # Specifica dove trovare gli output della build (es. APK/AAB)
