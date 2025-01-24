@@ -4,8 +4,8 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il tuo token Expo
-        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita temporaneamente il controllo Directory
+        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
+        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita il controllo Directory
       node: "16"  # Usa Node.js 16 per compatibilità con expo-camera
     scripts:
       - echo "== Verifica versione di Node.js =="
@@ -16,9 +16,10 @@ workflows:
       - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze
       - npm install  # Installa tutte le dipendenze
 
-      - echo "== Aggiunta del polyfill per fetch =="
+      - echo "== Aggiunta del polyfill per fetch e ReadableStream =="
       - npm install node-fetch@2.6.9  # Installa node-fetch versione 2 per supporto su Node.js 16
-      - echo "require('node-fetch');" >> setup.js  # Inserisci la dipendenza in un file separato
+      - npm install web-streams-polyfill  # Aggiungi il polyfill per ReadableStream
+      - echo "require('node-fetch'); require('web-streams-polyfill');" >> setup.js  # Aggiungi il polyfill
 
       - echo "== Verifica e sincronizzazione delle dipendenze =="
       - npx expo install --check  # Verifica e sincronizza le dipendenze
