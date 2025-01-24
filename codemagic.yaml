@@ -6,7 +6,10 @@ workflows:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
     scripts:
-      - npm install
+      # Installazione delle dipendenze, risolvendo i conflitti
+      - npm install --legacy-peer-deps
       - expo install react-native
       - expo install
+      - yarn install  # Usa questo solo se preferisci yarn
+      # Build del progetto Android
       - expo build:android --no-publish
