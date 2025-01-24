@@ -7,20 +7,17 @@ workflows:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il token Expo
       node: "16.14"  # Specifica la versione di Node.js
     scripts:
-      # Installa Expo CLI globalmente
-      - npm install -g expo-cli 
+      - npm install -g expo-cli  # Installa Expo CLI globalmente
+      - npm install --legacy-peer-deps  # Risolvi i conflitti delle dipendenze
+      - npm install  # Installa tutte le dipendenze, inclusa react-native
+      - expo install  # Installa le dipendenze di Expo
+      - yarn install || true  # Usa yarn solo se necessario (altrimenti ignora errori)
       
-      # Installa le dipendenze del progetto, gestendo eventuali conflitti
-      - npm install --legacy-peer-deps
+      # Verifica la versione di react-native
+      - npx react-native --version  # Stampa la versione di react-native nel log
 
-      # Installa le dipendenze richieste da Expo
-      - expo install 
-
-      # Installa eventuali altre dipendenze tramite Yarn, se necessario
-      - yarn install || true  # Usa yarn solo se il tuo progetto lo richiede (aggiungi `|| true` per ignorare eventuali errori se yarn non è necessario)
-      
       # Esegui la build per Android senza pubblicarla
-      - expo build:android --no-publish 
+      - expo build:android --no-publish  # Esegui la build Android
 
     artifacts:
       - build/  # Specifica dove trovare i file di output, ad esempio per APK o AAB
