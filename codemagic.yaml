@@ -14,8 +14,8 @@ workflows:
       - expo install  # Installa le dipendenze di Expo
       - yarn install || true  # Usa yarn solo se necessario (altrimenti ignora errori)
       
-      # Correggi le dipendenze con expo doctor
-      - expo doctor --fix-dependencies  # Risolve automaticamente le dipendenze incompatibili
+      # Correggi le dipendenze con npx expo-doctor
+      - npx expo-doctor  # Usa npx per diagnosticare e risolvere le dipendenze incompatibili
       
       # Verifica le versioni di Expo e React Native
       - expo --version  # Verifica la versione di Expo CLI
