@@ -1,0 +1,14 @@
+workflows:
+  expo_workflow:
+    name: Expo Workflow
+    max_build_duration: 60
+    environment:
+      vars:
+        EXPO_TOKEN: <-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz>
+    scripts:
+      - npm install -g expo-cli
+      - yarn install
+      - expo publish
+    android:
+      build:
+        workflow: managed
