@@ -3,7 +3,7 @@
     "name": "previsioni-crypto-custom",
     "slug": "snack-953710b6-4169-48ae-8425-1bff2166c8b4",
     "version": "1.0.0",
-    "sdkVersion": "52.0.0";
+    "sdkVersion": "52.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
