@@ -8,16 +8,21 @@ workflows:
       node: "16.14"  # Specifica la versione di Node.js
     scripts:
       - npm install -g expo-cli  # Installa Expo CLI globalmente
+      - npm install -g eas-cli  # Installa EAS CLI per la build
       - npm install --legacy-peer-deps  # Risolvi i conflitti delle dipendenze
       - npm install  # Installa tutte le dipendenze, inclusa react-native
       - expo install  # Installa le dipendenze di Expo
       - yarn install || true  # Usa yarn solo se necessario (altrimenti ignora errori)
       
-      # Verifica la versione di react-native
-      - npx react-native --version  # Stampa la versione di react-native nel log
+      # Verifica le versioni di Expo e React Native
+      - expo --version  # Verifica la versione di Expo CLI
+      - npx react-native --version  # Verifica la versione di React Native
 
-      # Esegui la build per Android senza pubblicarla
-      - expo build:android --no-publish  # Esegui la build Android
+      # Pulisci la cache di Expo (facoltativo)
+      - expo start -c  # Pulisce la cache di Expo
+
+      # Esegui la build con EAS per Android senza pubblicarla
+      - eas build --platform android --no-publish  # Usa EAS per la build Android
 
     artifacts:
       - build/  # Specifica dove trovare i file di output, ad esempio per APK o AAB
