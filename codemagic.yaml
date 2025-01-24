@@ -5,33 +5,30 @@ workflows:
     environment:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il tuo token Expo
-        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita i controlli problematici
-      node: "16.x"  # Node.js 16 per garantire compatibilità con fetch
+        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita temporaneamente il controllo Directory
+      node: "16"  # Usa Node.js 16 per compatibilità con expo-camera
     scripts:
-      # Installa Expo CLI e EAS CLI
-      - echo "Installazione degli strumenti..."
-      - npm install -g expo-cli eas-cli  # Installa Expo CLI ed EAS CLI
-      - npm install --legacy-peer-deps  # Risolvi eventuali conflitti di dipendenze
-      - npm install  # Installa tutte le dipendenze definite in package.json
+      - echo "== Verifica versione di Node.js =="
+      - node -v  # Verifica la versione di Node.js
 
-      # Sincronizza le dipendenze con Expo SDK
-      - echo "Sincronizzazione delle dipendenze..."
-      - npx expo install --check  # Controlla e sincronizza le dipendenze
-      - expo install expo-camera  # Aggiorna expo-camera alla versione corretta
+      - echo "== Installazione degli strumenti =="
+      - npm install -g expo-cli eas-cli  # Installa Expo CLI e EAS CLI
+      - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze
+      - npm install  # Installa tutte le dipendenze
 
-      # Verifica configurazione del progetto
-      - echo "Verificando configurazione..."
-      - expo --version  # Controlla la versione di Expo CLI
-      - npx react-native --version  # Controlla la versione di React Native
+      - echo "== Aggiunta del polyfill per fetch =="
+      - npm install node-fetch@2.6.9  # Installa node-fetch versione 2 per supporto su Node.js 16
+      - echo "require('node-fetch');" >> setup.js  # Inserisci la dipendenza in un file separato
 
-      # Pulisci la cache di Metro
-      - echo "Pulizia della cache..."
-      - expo start -c  # Pulisci la cache di Metro (opzionale)
+      - echo "== Verifica e sincronizzazione delle dipendenze =="
+      - npx expo install --check  # Verifica e sincronizza le dipendenze
+      - npx expo install expo-camera  # Installa la versione corretta di expo-camera
 
-      # Esegui la build con EAS
-      - echo "Eseguendo la build..."
-      - eas build --platform android --non-interactive --no-publish  # Crea la build per Android
+      - echo "== Pulizia della cache =="
+      - expo start -c  # Pulisce la cache di Expo
+
+      - echo "== Build con EAS =="
+      - eas build --platform android --non-interactive --no-publish  # Costruisci l'app senza pubblicarla
 
     artifacts:
-      - build/  # Specifica dove trovare i file di output (APK/AAB)
-
+      - build/  # Specifica dove trovare gli output della build (APK/AAB)
