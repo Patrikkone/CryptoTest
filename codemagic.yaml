@@ -5,7 +5,7 @@ workflows:
     environment:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz" # Il token Expo
-      node: latest # Specifica la versione di Node.js
+      node: "16.x" # Specifica la versione di Node.js
     scripts:
       - npm install -g expo-cli # Installa Expo CLI globalmente
       - npm install --legacy-peer-deps # Risolvi i conflitti delle dipendenze
