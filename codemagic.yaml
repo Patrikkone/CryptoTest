@@ -6,7 +6,7 @@ workflows:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il tuo token Expo
         EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita i controlli problematici
-      node: "18"  # Node.js 18 per garantire compatibilità con fetch
+      node: "16.x"  # Node.js 16 per garantire compatibilità con fetch
     scripts:
       # Installa Expo CLI e EAS CLI
       - echo "Installazione degli strumenti..."
