@@ -24,7 +24,7 @@
     "moment-timezone": "^0.5.42",
     "react": "18.2.0",
     "react-native": "0.72.5",
-    "react-native-chart-kit": "^6.14.0",
+    "react-native-chart-kit": "^4.5.0",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-paper": "^4.12.6",
