@@ -2,30 +2,26 @@ workflows:
   expo_workflow:
     name: Expo Workflow
     max_build_duration: 60
+    workflows:
+  expo_workflow:
+    name: Expo Workflow
+    max_build_duration: 60
     environment:
       vars:
-        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Aggiungi il tuo token Expo
+        EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"  # Il token Expo, assicurati di aggiornarlo se necessario
     scripts:
-      # Passo 1: Installa EAS CLI (il nuovo strumento per le build Expo)
-      - npm install -g eas-cli
+      # Installa Expo CLI globalmente
+      - npm install -g expo-cli
       
-      # Passo 2: Installa le dipendenze con npm, forzando la compatibilità
+      # Installa tutte le dipendenze con --legacy-peer-deps per evitare conflitti di versione
       - npm install --legacy-peer-deps
-      
-      # Passo 3: Esegui l'autenticazione Expo
-      - expo login --token $EXPO_TOKEN
 
-      # Passo 4: Installa le dipendenze richieste da Expo (se non usi yarn, usa expo install)
+      # Installa le dipendenze di Expo (necessario per il corretto funzionamento di Expo)
       - expo install
-
-      # Passo 5: Se vuoi usare Yarn, puoi farlo (altrimenti, usa npm)
-      - yarn install # Se preferisci yarn, altrimenti rimuovi questa riga
-
-      # Passo 6: Costruisci l'app Android usando EAS
-      - eas build --platform android --no-publish  # Usa EAS per la build
       
-      # Passo 7: Carica gli artefatti (APK o AAB)
-      - upload-artifact:
-          name: APK or AAB file
-          path: build/*.apk  # Carica l'APK o l'AAB generato
+      # Installa eventuali altre dipendenze
+      - yarn install  # Usa yarn se preferisci rispetto a npm
+
+      # Esegui la build per Android
+      - expo build:android --no-publish
 
