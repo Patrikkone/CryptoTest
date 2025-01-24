@@ -14,7 +14,3 @@ workflows:
       - expo build:android --no-publish # Esegui la build per Android
     artifacts:
       - build/ # Specifica dove trovare i file di output, ad esempio per APK o AAB
-    cache:
-      paths:
-        - node_modules # Cache per accelerare build successive
-        - .expo # Cache dei file di Expo
