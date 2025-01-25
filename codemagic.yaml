@@ -19,7 +19,7 @@ workflows:
       - npx expo install --fix  # Risolve le versioni incompatibili automaticamente
 
       - echo "== Build con EAS =="
-      - eas build --platform android --non-interactive --no-publish  # Costruisci l'app senza pubblicarla
+      - eas build --platform android --non-interactive  # Costruisci l'app senza pubblicarla
 
     artifacts:
       - build/  # Specifica dove trovare gli output della build (APK/AAB)
