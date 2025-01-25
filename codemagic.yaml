@@ -6,27 +6,23 @@ workflows:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
         EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita il controllo Directory
-      node: "18"  # Usa Node.js 16 per compatibilità con expo-camera
+      node: "18"  # Usa Node.js 18
     scripts:
-      - echo "== Verifica versione di Node.js =="
+      - echo "== Verifica versione di Node.js ==" 
       - node -v  # Verifica la versione di Node.js
 
-      - echo "== Installazione degli strumenti =="
+      - echo "== Installazione degli strumenti ==" 
       - npm install -g expo-cli eas-cli  # Installa Expo CLI e EAS CLI
-      - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze
-      - npm install  # Installa tutte le dipendenze
+      - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze, se necessario
 
-      - echo "== Aggiunta del polyfill per fetch e ReadableStream =="
-      - npm install node-fetch@2.6.9  # Installa node-fetch versione 2 per supporto su Node.js 16
-      - npm install web-streams-polyfill  # Aggiungi il polyfill per ReadableStream
-      - echo "require('node-fetch'); require('web-streams-polyfill');" >> setup.js  # Aggiungi il polyfill
-
-      - echo "== Verifica e sincronizzazione delle dipendenze =="
-      - npx expo install --check  # Verifica e sincronizza le dipendenze
-      - npx expo install expo-camera  # Installa la versione corretta di expo-camera
+      - echo "== Aggiornamento delle dipendenze con expo install --fix =="
+      - npx expo install --fix  # Risolve le versioni incompatibili automaticamente
 
       - echo "== Pulizia della cache =="
-      - expo start -c  # Pulisce la cache di Expo
+      - expo r -c  # Pulisce la cache senza avviare il server
+
+      - echo "== Verifica le versioni delle dipendenze =="
+      - npm ls  # Verifica lo stato delle dipendenze installate
 
       - echo "== Build con EAS =="
       - eas build --platform android --non-interactive --no-publish  # Costruisci l'app senza pubblicarla
