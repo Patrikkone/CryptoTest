@@ -18,12 +18,6 @@ workflows:
       - echo "== Aggiornamento delle dipendenze con expo install --fix =="
       - npx expo install --fix  # Risolve le versioni incompatibili automaticamente
 
-      - echo "== Pulizia della cache =="
-      - expo r -c  # Pulisce la cache senza avviare il server
-
-      - echo "== Verifica le versioni delle dipendenze =="
-      - npm ls  # Verifica lo stato delle dipendenze installate
-
       - echo "== Build con EAS =="
       - eas build --platform android --non-interactive --no-publish  # Costruisci l'app senza pubblicarla
 
