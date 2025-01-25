@@ -2,6 +2,7 @@
   "license": "0BSD",
   "main": "index.js",
   "scripts": {
+    "export": "expo export:embed --platform android --dev false"
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
