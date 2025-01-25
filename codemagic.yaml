@@ -12,7 +12,7 @@ workflows:
 
       - echo "== Installazione degli strumenti ==" 
       - npm install -g expo-cli eas-cli  # Installa Expo CLI e EAS CLI
-      - npm install --legacy-peer-deps  # Risolvi conflitti di dipendenze, se necessario
+      - npm install  # Risolvi conflitti di dipendenze, se necessario
 
       - echo "== Aggiornamento delle dipendenze con expo install --fix =="
       - npx expo install --fix  # Risolve le versioni incompatibili automaticamente
