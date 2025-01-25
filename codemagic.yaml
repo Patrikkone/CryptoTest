@@ -5,7 +5,6 @@ workflows:
     environment:
       vars:
         EXPO_TOKEN: "-yOXhrRGGMdpm8XbR_UR1NbZdppU44Fdm4-PsOGz"
-        EXPO_DOCTOR_ENABLE_DIRECTORY_CHECK: "false"  # Disabilita il controllo Directory
       node: "18"  # Usa Node.js 18
     scripts:
       - echo "== Verifica versione di Node.js ==" 
